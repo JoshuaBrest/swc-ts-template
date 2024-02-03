@@ -7,18 +7,17 @@ name: Lint
 jobs:
     lint:
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                node-version: [20]
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
             - name: Install pnpm
               uses: pnpm/action-setup@v2
+              with:
+                version: 8
             - name: Install Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: ${{ matrix.node-version }}
+                  node-version: 20
                   cache: pnpm
             - name: Install dependencies
               run: pnpm install
